@@ -29,7 +29,6 @@ export class LayoutComponent {
     return allMenus;
   }
 
-
   logout() {
     this.router.navigate(['/']); // Navega para a rota raiz (login)
     sessionStorage.clear();

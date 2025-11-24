@@ -9,6 +9,9 @@ import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { FuncionariosComponent } from './components/funcionarios/funcionarios.component';
+import { VeiculosComponent } from './components/veiculos/veiculos.component';
+import { EmprestimosComponent } from './components/emprestimos/emprestimos.component';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
     AppComponent,
     LoginComponent,
     LayoutComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    FuncionariosComponent,
+    VeiculosComponent,
+    EmprestimosComponent
   ],
   imports: [
     BrowserModule,

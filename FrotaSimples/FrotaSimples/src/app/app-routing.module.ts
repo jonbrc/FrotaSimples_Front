@@ -5,6 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { FuncionariosComponent } from './components/funcionarios/funcionarios.component';
+import { EmprestimosComponent } from './components/emprestimos/emprestimos.component';
+import { VeiculosComponent } from './components/veiculos/veiculos.component';
 
 const routes: Routes = [
   // 1. Rota de Login (Área Não-Autenticada)
@@ -15,7 +18,10 @@ const routes: Routes = [
   {
     path: 'home', component: LayoutComponent,
     children: [
-      { path: 'usuarios', component:UsuariosComponent, pathMatch: 'full' }
+      { path: 'usuarios', component:UsuariosComponent, pathMatch: 'full' },
+      { path: 'funcionarios', component:FuncionariosComponent, pathMatch: 'full' },
+      { path: 'emprestimos', component:EmprestimosComponent, pathMatch: 'full' },
+      { path: 'veiculos', component:VeiculosComponent, pathMatch: 'full' },
     ]
   },
   { path: '**', redirectTo: 'login' } 
