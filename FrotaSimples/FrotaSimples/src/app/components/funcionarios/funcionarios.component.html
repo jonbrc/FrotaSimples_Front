@@ -1,1 +1,16 @@
-<p>funcionarios works!</p>
+<!-- Botão De cadastro de funcionários -->
+<po-button p-label="Cadastrar Funcionário" p-kind="primary" (p-click)="abrirModalCriacao()" style="margin-bottom: 10px"></po-button>
+
+<!-- Modal para criação de funcionários -->
+<po-modal (p-close)="resetAll()" #modalForm [p-title]="'Adicionar Funcionário'">
+  <po-dynamic-form #dynamicForm [p-fields]="fields"></po-dynamic-form>
+  <po-modal-footer>
+    <!-- Ação de Cadastro: chama apenas cadastrarFuncionario() -->
+    <po-button p-label="Confirmar" p-kind="primary"
+      (p-click)="cadastrarFuncionario()"> </po-button>
+    <po-button p-label="Fechar" (p-click)="modalForm.close()"> </po-button>
+  </po-modal-footer>
+</po-modal>
+
+<!-- Tabela de exibição dos funcionários -->
+<po-table [p-columns]="columns" [p-items]="funcionarios" [p-striped]="true" [p-sort]="true" [p-hide-columns-manager]="true" p-container="shadow"></po-table>
