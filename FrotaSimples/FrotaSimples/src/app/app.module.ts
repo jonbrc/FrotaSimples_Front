@@ -12,6 +12,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { FuncionariosComponent } from './components/funcionarios/funcionarios.component';
 import { VeiculosComponent } from './components/veiculos/veiculos.component';
 import { EmprestimosComponent } from './components/emprestimos/emprestimos.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { EmprestimosComponent } from './components/emprestimos/emprestimos.compo
     UsuariosComponent,
     FuncionariosComponent,
     VeiculosComponent,
-    EmprestimosComponent
+    EmprestimosComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,

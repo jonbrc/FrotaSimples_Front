@@ -31,7 +31,7 @@ export class LoginComponent {
               orientation: PoToasterOrientation.Top
             });
 
-            this.router.navigate(['/home']);
+            this.router.navigate(['app/homepage']);
           }
         },
         error: (err) => {

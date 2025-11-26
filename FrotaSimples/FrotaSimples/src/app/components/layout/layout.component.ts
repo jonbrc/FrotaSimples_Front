@@ -20,6 +20,7 @@ export class LayoutComponent {
 
   private getFilteredMenus(): Array<PoMenuItem> {
     const allMenus: Array<PoMenuItem> = [
+      { label: 'Home', link: 'homepage', icon: 'an an-house-line', shortLabel: 'Home' },
       { label: 'Usuários', link: 'usuarios', icon: 'an an-user-list', shortLabel: 'Usuários' },
       { label: 'Funcionários', link: 'funcionarios', icon: 'an an-users-three', shortLabel: 'Usuários' },
       { label: 'Veículos', link: 'veiculos', icon: 'an an-car', shortLabel: 'Veículos' },

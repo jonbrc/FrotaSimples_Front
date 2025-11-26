@@ -8,6 +8,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { FuncionariosComponent } from './components/funcionarios/funcionarios.component';
 import { EmprestimosComponent } from './components/emprestimos/emprestimos.component';
 import { VeiculosComponent } from './components/veiculos/veiculos.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 const routes: Routes = [
   // 1. Rota de Login (Área Não-Autenticada)
@@ -16,15 +17,16 @@ const routes: Routes = [
   },
   // 2. Rota Principal/Layout (Área AUTENTICADA)
   {
-    path: 'home', component: LayoutComponent,
+    path: 'app', component: LayoutComponent,
     children: [
+      { path: 'homepage', component:HomepageComponent, pathMatch: 'full' },
       { path: 'usuarios', component:UsuariosComponent, pathMatch: 'full' },
       { path: 'funcionarios', component:FuncionariosComponent, pathMatch: 'full' },
       { path: 'emprestimos', component:EmprestimosComponent, pathMatch: 'full' },
-      { path: 'veiculos', component:VeiculosComponent, pathMatch: 'full' },
+      { path: 'veiculos', component:VeiculosComponent, pathMatch: 'full' }
     ]
   },
-  { path: '**', redirectTo: 'login' } 
+  { path: '**', redirectTo: '' } 
 ];
 
 @NgModule({
