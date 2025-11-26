@@ -1,1 +1,30 @@
-<p>homepage works!</p>
+<div class="po-container">
+    <!-- Carrossel de imagens -->
+    <div class="po-row">
+        <div class="po-md-12 po-text-center">
+            <po-slide [p-slides]="slides" [p-height]="500" [p-interval]="3000">
+            </po-slide>
+        </div>
+    </div>
+
+    <div class="po-row">
+        <!-- Carros disponíveis -->
+        <div class="po-md-6 po-text-center">
+            <po-chart [p-series]="[
+                    { label: 'Angular', data: 100 },
+                    { label: 'React', data: 10 }
+                ]">
+            </po-chart>
+        </div>
+        <!-- Emprestimos em andamento -->
+        <div class="po-md-6 po-text-center">
+            <po-chart
+                [p-series]="[
+                    { label: 'Angular', data: 100 },
+                    { label: 'React', data: 10 }
+                ]"
+                >
+                </po-chart>
+        </div>
+    </div>
+</div>

@@ -34,7 +34,9 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "./node_modules/@po-ui/style/css/po-theme-default.min.css",
@@ -92,8 +94,10 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
-            "assets": ["src/assets", {"glob": "**/*", "input": "public"}]
-            ,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
               "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "src/styles.css"

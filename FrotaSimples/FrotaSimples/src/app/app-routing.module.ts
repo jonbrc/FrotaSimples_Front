@@ -11,11 +11,9 @@ import { VeiculosComponent } from './components/veiculos/veiculos.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 
 const routes: Routes = [
-  // 1. Rota de Login (Área Não-Autenticada)
   { 
     path: '',component: LoginComponent,
   },
-  // 2. Rota Principal/Layout (Área AUTENTICADA)
   {
     path: 'app', component: LayoutComponent,
     children: [
