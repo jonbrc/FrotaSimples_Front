@@ -10,21 +10,25 @@
     <div class="po-row">
         <!-- Carros disponíveis -->
         <div class="po-md-6 po-text-center">
-            <po-chart [p-series]="[
-                    { label: 'Angular', data: 100 },
-                    { label: 'React', data: 10 }
-                ]">
+            <po-chart [p-series]="seriesVeiculos">
             </po-chart>
         </div>
         <!-- Emprestimos em andamento -->
-        <div class="po-md-6 po-text-center">
-            <po-chart
-                [p-series]="[
-                    { label: 'Angular', data: 100 },
-                    { label: 'React', data: 10 }
-                ]"
-                >
-                </po-chart>
+        <div class="po-md-6">
+            <po-button class="po-md-12 po-mb-2"  p-label="Clique nos botões abaixo para navegar" p-size="large">
+            </po-button>
+            
+            <po-button class="po-md-12 po-mb-2" p-label="Usuários" p-size="large" (p-click)="irParaUsuarios()">
+            </po-button>
+
+            <po-button class="po-md-12 po-mb-2" p-label="Funcionários" p-size="large" (p-click)="irParaFuncionarios()">
+            </po-button>
+
+            <po-button class="po-md-12 po-mb-2" p-label="Veículos" p-size="large" (p-click)="irParaVeiculos()">
+            </po-button>
+
+            <po-button class="po-md-12" p-label="Empréstimos" p-size="large" (p-click)="irParaEmprestimos()">
+            </po-button>
         </div>
     </div>
 </div>

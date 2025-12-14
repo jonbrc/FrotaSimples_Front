@@ -31,6 +31,19 @@ export interface RegistrarEmprestimoResponse {
   funcionario_id: number;
 }
 
+export interface FinalizarEmprestimoRequest {
+  data_retorno: string;
+  km_retorno: number;
+  observacao?: string;
+}
+
+export interface FinalizarEmprestimoResponse {
+  mensagem: string;
+  emprestimo: Emprestimo;
+  distancia_percorrida_km: number;
+  veiculo_disponivel: boolean;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,5 +59,13 @@ export class EmprestimosService {
 
   listarEmprestimos(): Observable<Emprestimo[]> {
     return this.http.get<Emprestimo[]>(this.apiUrl);
+  }
+
+  finalizarEmprestimo(id: number, dados: FinalizarEmprestimoRequest): Observable<FinalizarEmprestimoResponse> {
+    return this.http.patch<FinalizarEmprestimoResponse>(`${this.apiUrl}/${id}/finalizar`, dados);
+  }
+
+  listarEmprestimosAtivos(): Observable<{ total: number, emprestimos: Emprestimo[] }> {
+    return this.http.get<{ total: number, emprestimos: Emprestimo[] }>(`${this.apiUrl}/ativos`);
   }
 }

@@ -11,13 +11,13 @@ import { VeiculosService, Veiculo, NovoVeiculo, CadastrarVeiculoResponse } from 
 
 export class VeiculosComponent implements OnInit {
   isEditing: boolean = false;
-  
+
   // Usando a interface tipada
   veiculos: Veiculo[] = [];
 
   // ViewChilds
   @ViewChild('dynamicForm', { static: true }) dynamicForm!: PoDynamicFormComponent;
-  @ViewChild('modalForm', { static: true }) modal!: PoModalComponent; 
+  @ViewChild('modalForm', { static: true }) modal!: PoModalComponent;
 
   // Setando os campos do dynamicForm: modelo, marca, ano, placa e tipo
   public readonly fields: Array<PoDynamicFormField> = [
@@ -29,14 +29,43 @@ export class VeiculosComponent implements OnInit {
   ];
 
   // Definindo as colunas da tabela de acordo com o retorno da API
-  columns: Array<PoTableColumn> = [
-    { property: 'id', label: 'ID', type: 'number'},
-    { property: 'modelo', label: 'Modelo'},
-    { property: 'marca', label: 'Marca'},
-    { property: 'ano', label: 'Ano', type: 'number'},
-    { property: 'placa', label: 'Placa'},
-    { property: 'tipo', label: 'Tipo'},
-    { property: 'ativo', label: 'Ativo', type: 'boolean', width: '8%', boolean: { trueLabel: 'Sim', falseLabel: 'Não' } },
+  columns: PoTableColumn[] = [
+    {
+      property: 'ativo',
+      label: '',
+      type: 'icon',
+      width: '5%',
+      icons: [
+        {
+          icon: 'an-fill an-circle',
+          color: 'color-11',
+          value: 'true',
+          tooltip: 'Ativo'
+        },
+        {
+          icon: 'an-fill an-circle',
+          color: 'color-07',
+          value: 'false',
+          tooltip: 'Inativo'
+        }
+      ]
+    },
+
+    { property: 'id', label: 'ID', type: 'number' },
+    { property: 'modelo', label: 'Modelo' },
+    { property: 'marca', label: 'Marca' },
+    { property: 'ano', label: 'Ano', type: 'number' },
+    { property: 'placa', label: 'Placa' },
+    {
+      property: 'tipo',
+      label: 'Tipo',
+      type: 'icon',
+      width: '8%',
+      icons: [
+        { icon: 'an an-car-profile', value: 'carro', tooltip: 'Carro' },
+        { icon: 'an an-truck', value: 'caminhao', tooltip: 'Caminhão' }
+      ]
+    },
     { property: 'criado_em', label: 'Criado Em', type: 'date', format: 'dd/MM/yyyy HH:mm:ss', width: '17%' }
   ];
 
@@ -94,12 +123,13 @@ export class VeiculosComponent implements OnInit {
   listarVeiculos(): void {
     this.veiculosService.listarVeiculos().subscribe({
       next: (response: Veiculo[]) => {
-        // A resposta já vem no formato correto
-        this.veiculos = response;
+        this.veiculos = response.map(v => ({
+          ...v,
+          ativo: v.ativo ? 'true' : 'false'
+        })) as any;
       },
-      error: (error) => {
+      error: () => {
         this.poNotificationService.error('Erro ao carregar lista de veículos.');
-        console.error('Erro ao carregar veículos:', error);
       }
     });
   }
@@ -110,7 +140,7 @@ export class VeiculosComponent implements OnInit {
     this.dynamicForm.form.reset();
     this.isEditing = false;
   }
-  
+
   // Função para abrir o modal de criação
   abrirModalCriacao(): void {
     this.resetAll();

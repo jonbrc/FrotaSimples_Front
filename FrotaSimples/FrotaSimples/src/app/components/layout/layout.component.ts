@@ -21,10 +21,10 @@ export class LayoutComponent {
   private getFilteredMenus(): Array<PoMenuItem> {
     const allMenus: Array<PoMenuItem> = [
       { label: 'Home', link: 'homepage', icon: 'an an-house-line', shortLabel: 'Home' },
-      { label: 'Usuários', link: 'usuarios', icon: 'an an-user-list', shortLabel: 'Usuários' },
-      { label: 'Funcionários', link: 'funcionarios', icon: 'an an-users-three', shortLabel: 'Usuários' },
+      { label: 'Empréstimos', link: 'emprestimos', icon: 'an an-calendar-blank', shortLabel: 'Empréstimos' },
       { label: 'Veículos', link: 'veiculos', icon: 'an an-car', shortLabel: 'Veículos' },
-      { label: 'Emprestimos', link: 'emprestimos', icon: 'an an-calendar-blank', shortLabel: 'Laboratórios' },
+      { label: 'Usuários', link: 'usuarios', icon: 'an an-user-list', shortLabel: 'Usuários' },
+      { label: 'Funcionários', link: 'funcionarios', icon: 'an an-users-three', shortLabel: 'Funcionários' },
       { label: 'Sair', link: '', icon: 'an an-arrow-left', shortLabel: 'Sair', action: this.logout.bind(this) }
     ];
     return allMenus;

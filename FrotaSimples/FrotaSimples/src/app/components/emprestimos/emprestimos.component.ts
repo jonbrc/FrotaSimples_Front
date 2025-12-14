@@ -11,13 +11,13 @@ import { EmprestimosService, Emprestimo, NovoEmprestimo, RegistrarEmprestimoResp
 
 export class EmprestimosComponent implements OnInit {
   isEditing: boolean = false;
-  
+
   // Usando a interface tipada
   emprestimos: Emprestimo[] = [];
 
   // ViewChilds
   @ViewChild('dynamicForm', { static: true }) dynamicForm!: PoDynamicFormComponent;
-  @ViewChild('modalForm', { static: true }) modal!: PoModalComponent; 
+  @ViewChild('modalForm', { static: true }) modal!: PoModalComponent;
 
   // Setando os campos do dynamicForm: veiculo_id, funcionario_id, data_saida, km_saida e observacao (opcional)
   public readonly fields: Array<PoDynamicFormField> = [
@@ -29,7 +29,28 @@ export class EmprestimosComponent implements OnInit {
   ];
 
   // Definindo as colunas da tabela de acordo com o retorno da API
-  columns: Array<PoTableColumn> = [
+  columns: PoTableColumn[] = [
+    {
+      property: 'ativoTabela',
+      label: '',
+      type: 'icon',
+      width: '4%',
+      icons: [
+        {
+          icon: 'an-fill an-circle',
+          color: 'color-08',
+          value: 'true',
+          tooltip: 'Empréstimo em andamento'
+        },
+        {
+          icon: 'an-fill an-circle',
+          color: 'color-11',
+          value: 'false',
+          tooltip: 'Empréstimo finalizado'
+        }
+      ]
+    },
+
     { property: 'id', label: 'ID', type: 'number', width: '5%' },
     { property: 'veiculo_placa', label: 'Placa do Veículo', width: '12%' },
     { property: 'funcionario_nome', label: 'Funcionário', width: '18%' },
@@ -95,12 +116,13 @@ export class EmprestimosComponent implements OnInit {
   listarEmprestimos(): void {
     this.emprestimosService.listarEmprestimos().subscribe({
       next: (response: Emprestimo[]) => {
-        // A resposta já vem no formato correto
-        this.emprestimos = response;
+        this.emprestimos = response.map(e => ({
+          ...e,
+          ativoTabela: e.data_retorno ? 'false' : 'true'
+        })) as any;
       },
-      error: (error) => {
+      error: () => {
         this.poNotificationService.error('Erro ao carregar lista de empréstimos.');
-        console.error('Erro ao carregar empréstimos:', error);
       }
     });
   }
@@ -111,7 +133,7 @@ export class EmprestimosComponent implements OnInit {
     this.dynamicForm.form.reset();
     this.isEditing = false;
   }
-  
+
   // Função para abrir o modal de criação
   abrirModalCriacao(): void {
     this.resetAll();
